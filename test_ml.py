@@ -49,11 +49,11 @@ def test_process_data_types():
 # implement the second test. Change the function name and input as needed
 def test_train_model_type():
     """
-    Test if the train_model function returns a RandomForestClassifier.
+    Test if the train_model function returns a LogisticRegression.
     """
     X, y, encoder, lb = process_data(data, categorical_features=cat_features, label="salary", training=True)
     model = train_model(X, y)
-    assert isinstance(model, RandomForestClassifier), "Expected the model to be an instance of RandomForestClassifier"
+    assert isinstance(model, LogisticRegression), "Expected the model to be an instance of LogisticRegression"
 
 # implement the third test. Change the function name and input as needed
 def test_train_test_split():
