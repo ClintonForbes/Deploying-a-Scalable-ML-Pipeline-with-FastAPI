@@ -26,25 +26,26 @@ class Data(BaseModel):
     hours_per_week: int = Field(..., example=40, alias="hours-per-week")
     native_country: str = Field(..., example="United-States", alias="native-country")
 
-path = # TODO: enter the path for the saved encoder 
-encoder = load_model(path)
+# Define the paths for the saved model and encoder
+model_path = os.path.join("model", "model.pkl")
+encoder_path = os.path.join("model", "encoder.pkl")
 
-path = # TODO: enter the path for the saved model 
-model = load_model(path)
+# Load the encoder and model
+encoder = load_model(encoder_path)
+model = load_model(model_path)
 
-# TODO: create a RESTful API using FastAPI
-app = # your code here
+# Create a RESTful API using FastAPI
+app = FastAPI()
 
-# TODO: create a GET on the root giving a welcome message
+# create a GET on the root giving a welcome message
 @app.get("/")
 async def get_root():
     """ Say hello!"""
-    # your code here
-    pass
+    return {"message": "Welcome to the Census Income Prediction API!"}
 
 
-# TODO: create a POST on a different path that does model inference
-@app.post("/data/")
+# create a POST on a different path that does model inference
+@app.post("/predict/")
 async def post_inference(data: Data):
     # DO NOT MODIFY: turn the Pydantic model into a dict.
     data_dict = data.dict()
@@ -65,10 +66,7 @@ async def post_inference(data: Data):
         "native-country",
     ]
     data_processed, _, _, _ = process_data(
-        # your code here
-        # use data as data input
-        # use training = False
-        # do not need to pass lb as input
+        data, categorical_features=cat_features, label=None, training=False, encoder=encoder
     )
-    _inference = # your code here to predict the result using data_processed
+    _inference = inference(model, data_processed)
     return {"result": apply_label(_inference)}
