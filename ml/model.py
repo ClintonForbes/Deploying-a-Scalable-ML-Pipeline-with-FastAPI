@@ -2,10 +2,6 @@ import pickle
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from ml.data import process_data
 from sklearn.linear_model import LogisticRegression
-<<<<<<< HEAD
-
-=======
->>>>>>> e167e72d1376bdd647b2c14acd406c587b17d6dc
 
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
@@ -28,7 +24,6 @@ def train_model(X_train, y_train):
     model.fit(X_train, y_train)
     return model
 
-
 def compute_model_metrics(y, preds):
     """
     Validates the trained machine learning model using precision, recall, and F1.
@@ -50,7 +45,6 @@ def compute_model_metrics(y, preds):
     recall = recall_score(y, preds, zero_division=1)
     return precision, recall, fbeta
 
-
 def inference(model, X):
     """ Run model inferences and return the predictions.
 
@@ -68,10 +62,6 @@ def inference(model, X):
     # implement the function
     preds = model.predict(X)
     return preds
-<<<<<<< HEAD
-    
-=======
->>>>>>> e167e72d1376bdd647b2c14acd406c587b17d6dc
 
 def save_model(model, path):
     """ Serializes model to a file.
@@ -93,7 +83,6 @@ def load_model(path):
     with open(path, 'rb') as f:
         model = pickle.load(f)
     return model
-
 
 def performance_on_categorical_slice(
     data, column_name, slice_value, categorical_features, label, encoder, lb, model
@@ -142,10 +131,7 @@ def performance_on_categorical_slice(
         column_name=column_name,
         slice_value=slice_value
     )
-<<<<<<< HEAD
-=======
-    
->>>>>>> e167e72d1376bdd647b2c14acd406c587b17d6dc
+
     preds = inference(model, X_slice)
     
     precision, recall, fbeta = compute_model_metrics(y_slice, preds)
