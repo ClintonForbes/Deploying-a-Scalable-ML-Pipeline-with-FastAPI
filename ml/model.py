@@ -123,7 +123,7 @@ def performance_on_categorical_slice(
     # implement the function
     slice_data = data[data[column_name] == slice_value]
     X_slice, y_slice, encoder, lb = process_data(
-        data,
+        slice_data,
         categorical_features=categorical_features,
         label=label,
         encoder=encoder,
