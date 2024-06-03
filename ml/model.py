@@ -128,10 +128,7 @@ def performance_on_categorical_slice(
         encoder=encoder,
         lb=lb,
         training=False,
-        column_name=column_name,
-        slice_value=slice_value
     )
-
     preds = inference(model, X_slice)
     
     precision, recall, fbeta = compute_model_metrics(y_slice, preds)
