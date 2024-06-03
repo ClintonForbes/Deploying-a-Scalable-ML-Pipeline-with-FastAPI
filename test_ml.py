@@ -47,16 +47,13 @@ def test_process_data_types():
     assert len(y) == len(data), "Expected y to have the same number of rows as the input data"
 
 # implement the second test. Change the function name and input as needed
-def test_compute_model_metrics_values():
+def test_train_model_type():
     """
-    Test if the compute_model_metrics function returns the expected values.
+    Test if the train_model function returns a RandomForestClassifier.
     """
-    y_true = np.array([0, 1, 0, 0])
-    y_pred = np.array([0, 1, 0, 1])
-    precision, recall, f1 = compute_model_metrics(y_true, y_pred)
-    assert precision == 1.0, "Expected precision to be 1.0"
-    assert recall == 0.5, "Expected recall to be 0.5"
-    assert f1 == 0.6666666666666666, "Expected F1 score to be 0.6666666666666666"
+    X, y, encoder, lb = process_data(data, categorical_features=cat_features, label="salary", training=True)
+    model = train_model(X, y)
+    assert isinstance(model, RandomForestClassifier), "Expected the model to be an instance of RandomForestClassifier"
 
 # implement the third test. Change the function name and input as needed
 def test_train_test_split():
